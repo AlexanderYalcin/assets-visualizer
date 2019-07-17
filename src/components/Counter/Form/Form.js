@@ -7,8 +7,11 @@ export default class Form extends Component {
     this.inputElement.focus();
   }
 
-  sendAmount = async e => {
-    e.preventDefault();
+  sendAmount = async event => {
+    event.preventDefault();
+    let amount = event.target.amount.value;
+    console.log(amount);
+    event.target.amount.value = '';
   };
 
   render() {
@@ -18,7 +21,7 @@ export default class Form extends Component {
           <p>Enter your savings amount for this month</p>
           <input
             type="text"
-            onChange={this.changed}
+            name="amount"
             placeholder="123..."
             className={classes.Input}
             ref={inputEl => {
