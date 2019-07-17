@@ -5,15 +5,3 @@
 .Counter h2 {
   margin: 0;
 }
-
-.Input {
-  width: 100%;
-  height: 33px;
-  max-width: 20em;
-  border-radius: 3px;
-}
-
-.Form {
-  margin-top: 40px;
-  font-weight: 600;
-}

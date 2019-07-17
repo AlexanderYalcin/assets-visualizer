@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-
 import classes from './Counter.css';
+import Form from './Form/Form';
 
 export default class Counter extends Component {
-  componentDidMount() {
-    this.inputElement.focus();
-  }
-
   render() {
-    console.log(this.changed);
     return (
       <div className={classes.Wrapper}>
         <div className={classes.Counter}>
@@ -19,17 +14,7 @@ export default class Counter extends Component {
               detailed information, total amount saved so far, etc.
             </p>
           </div>
-          <form className={classes.Form}>
-            <p>Enter your savings amount for this month</p>
-            <input
-              type="text"
-              onChange={this.props.changed}
-              ref={inputEl => {
-                this.inputElement = inputEl;
-              }}
-              className={classes.Input}
-            />
-          </form>
+          <Form />
         </div>
       </div>
     );
