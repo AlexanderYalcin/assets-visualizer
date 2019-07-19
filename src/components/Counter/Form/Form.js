@@ -17,30 +17,14 @@ class Form extends Component {
   amountHandler = event => {
     event.preventDefault();
     this.setState({ loading: true });
-    let amount = event.target.amount.value;
-
-    let resetForm = ''; //varför måste jag deklarera den först?
-    resetForm = () => {
-      event.target.amount.value = '';
-    };
-
-    if (amount.length < 1) {
-      alert('Please enter your amount!'); //TemporaryAlert
-    }
-    let reg = new RegExp('(^[0-9]*$)');
-    if (!reg.test(amount)) {
-      alert('Digits allowed only!'); //TemporaryAlert
-      resetForm();
-    }
+    const result = { amount: event.target.amount.value };
 
     axios
-      .post('/assets.json', amount)
+      .post('/assets.json', result)
       .then(response => {
         this.setState({ loading: false });
       })
       .catch(error => this.setState({ loading: false }));
-    console.log(amount);
-    resetForm();
   };
 
   render() {
@@ -48,7 +32,7 @@ class Form extends Component {
       <form onSubmit={this.amountHandler} className={classes.Form}>
         <p>Enter your savings amount for this month</p>
         <input
-          type="text"
+          type="number"
           name="amount"
           placeholder="123..."
           className={classes.Input}
