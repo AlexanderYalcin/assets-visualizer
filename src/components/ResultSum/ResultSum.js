@@ -6,7 +6,9 @@ const ResultSum = props => {
     total += parseInt(props.fetchedResults[i].amount);
   }
 
-  return <h1>Total: {total} SEK</h1>;
+  return <p>Total: <strong>{total}</strong> SEK</p>;
 };
 
 export default ResultSum;
+
+

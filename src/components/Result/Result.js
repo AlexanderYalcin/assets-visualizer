@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import classes from './Result.css';
 
 const Result = props => {
   const ingredients = [];
@@ -11,7 +12,7 @@ const Result = props => {
   }
 
   return (
-    <div >
+    <div className={classes.Results}>
       <p>
         Amount: <strong>{Number.parseFloat(props.amount)} SEK</strong>
       </p>

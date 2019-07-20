@@ -4,6 +4,7 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Result from '../../components/Result/Result';
 import ResultSum from '../../components/ResultSum/ResultSum'
+import classes from './Results.css'
 
 class Results extends Component {
   state = {
@@ -32,13 +33,13 @@ class Results extends Component {
   render() {
     return (
       <Aux>
-        <div>
+        <div >
           {this.state.results.map(result => (
-            <Result key={result.id} amount={result.amount} />
+            <Result key={result.id} amount={result.amount} fetchedResults={this.state.results} />
           ))}
         </div>
-        <div>
-          <ResultSum fetchedResults={this.state.results} />
+        <div className={classes.ResultSum} >
+          <ResultSum fetchedResults={this.state.results} /> {/* total showing 0 first, fix it */}
         </div>
       </Aux>
     );
