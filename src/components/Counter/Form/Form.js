@@ -7,7 +7,7 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 
 class Form extends Component {
   state = {
-    loading: false
+    loading: false,
   };
 
   componentDidMount() {
@@ -17,14 +17,20 @@ class Form extends Component {
   amountHandler = event => {
     event.preventDefault();
     this.setState({ loading: true });
-    const result = { amount: event.target.amount.value };
+    let result = { amount: event.target.amount.value };
 
-    axios
-      .post('/assets.json', result)
-      .then(response => {
-        this.setState({ loading: false });
-      })
-      .catch(error => this.setState({ loading: false }));
+    let reg = new RegExp('(^[1-9][0-9]*$)');
+    if (reg.test(result.amount)) {
+      axios
+        .post('/assets.json', result)
+        .then(response => {
+          this.setState({ loading: false });
+        })
+        .catch(error => this.setState({ loading: false }));
+    } else {
+      alert('Bad input'); //Temporary
+      this.setState({ loading: false });
+    }
   };
 
   render() {
@@ -32,8 +38,9 @@ class Form extends Component {
       <form onSubmit={this.amountHandler} className={classes.Form}>
         <p>Enter your savings amount for this month</p>
         <input
-          type="number"
           name="amount"
+          type="number"
+          min="1"
           placeholder="123..."
           className={classes.Input}
           ref={inputEl => {
@@ -43,6 +50,7 @@ class Form extends Component {
         <button className={classes.Button}>Send Amount</button>
       </form>
     );
+
     if (this.state.loading) {
       form = <Spinner />;
     }
