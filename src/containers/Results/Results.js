@@ -3,8 +3,9 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Result from '../../components/Result/Result';
-import ResultSum from '../../components/ResultSum/ResultSum'
-import classes from './Results.css'
+import ResultSum from '../../components/ResultSum/ResultSum';
+import classes from './Results.css';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Results extends Component {
   state = {
@@ -31,18 +32,26 @@ class Results extends Component {
   }
 
   render() {
-    return (
+    let results = (
       <Aux>
-        <div >
+        <div>
           {this.state.results.map(result => (
-            <Result key={result.id} amount={result.amount} fetchedResults={this.state.results} />
+            <Result
+              key={result.id}
+              amount={result.amount}
+              fetchedResults={this.state.results}
+            />
           ))}
         </div>
-        <div className={classes.ResultSum} >
-          <ResultSum fetchedResults={this.state.results} /> {/* total showing 0 first, fix it */}
+        <div className={classes.ResultSum}>
+          <ResultSum fetchedResults={this.state.results} />{' '}
         </div>
       </Aux>
     );
+    if (this.state.loading) {
+      results = <Spinner />;
+    }
+    return <Aux>{results}</Aux>;
   }
 }
 
