@@ -7,17 +7,32 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 
 class Form extends Component {
   state = {
-    loading: false,
+    loading: false
   };
 
   componentDidMount() {
     this.inputElement.focus();
   }
 
+  dateCreator = () => {
+    const currentDate = new Date();
+    const dateTime =
+      currentDate.getDate() +
+      '/' +
+      (currentDate.getMonth() + 1) +
+      '/' +
+      currentDate.getFullYear();
+
+    return dateTime;
+  };
+
   amountHandler = event => {
     event.preventDefault();
     this.setState({ loading: true });
-    let result = { amount: event.target.amount.value };
+    let result = {
+      amount: event.target.amount.value,
+      date: this.dateCreator()
+    };
 
     let reg = new RegExp('(^[1-9][0-9]*$)');
     if (reg.test(result.amount)) {

@@ -2,12 +2,12 @@ import React from 'react';
 import classes from './Result.css';
 
 const Result = props => {
-  const ingredients = [];
+  const results = [];
 
-  for (let ingredientName in props.ingredients) {
-    ingredients.push({
-      name: ingredientName,
-      amount: props.ingredients[ingredientName]
+  for (let resultName in props.results) {
+    results.push({
+      name: resultName,
+      amount: props.results[resultName]
     });
   }
 
@@ -16,6 +16,7 @@ const Result = props => {
       <p>
         Amount: <strong>{Number.parseFloat(props.amount)} SEK</strong>
       </p>
+      <p>{props.date}</p>
     </div>
   );
 };

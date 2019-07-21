@@ -3,7 +3,7 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Result from '../../components/Result/Result';
-import ResultSum from '../../components/ResultSum/ResultSum';
+import ResultSum from '../../components/Result/ResultSum/ResultSum';
 import classes from './Results.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
@@ -39,6 +39,7 @@ class Results extends Component {
             <Result
               key={result.id}
               amount={result.amount}
+              date={result.date}
               fetchedResults={this.state.results}
             />
           ))}
