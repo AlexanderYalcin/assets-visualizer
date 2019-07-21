@@ -1,4 +1,14 @@
+.Results {
+  max-height: 585px;
+  overflow-y: scroll;
+}
+
 .ResultSum {
   text-align: center;
   font-size: 2em;
+}
+
+.DeleteAllButton {
+  background-color: red;
+  color: white;
 }

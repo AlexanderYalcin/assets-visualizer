@@ -13,6 +13,14 @@ class Results extends Component {
     loading: true
   };
 
+  deleteAllResultsHandler = () => {
+    axios
+      .delete('/assets.json')
+      .then(x => {
+      window.location.reload();
+    });
+  };
+
   componentDidMount() {
     axios
       .get('/assets.json')
@@ -34,7 +42,7 @@ class Results extends Component {
   render() {
     let results = (
       <Aux>
-        <div>
+        <div onClick={this.deleteResultHandler} className={classes.Results}>
           {this.state.results.map(result => (
             <Result
               key={result.id}
@@ -45,14 +53,15 @@ class Results extends Component {
           ))}
         </div>
         <div className={classes.ResultSum}>
-          <ResultSum fetchedResults={this.state.results} />{' '}
+          <ResultSum fetchedResults={this.state.results} />
         </div>
+        <button className={classes.DeleteAllButton} onClick={this.deleteAllResultsHandler}>Delete All</button>
       </Aux>
     );
     if (this.state.loading) {
       results = <Spinner />;
     }
-    return <Aux>{results}</Aux>;
+    return <div>{results}</div>;
   }
 }
 
