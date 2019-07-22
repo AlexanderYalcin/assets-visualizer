@@ -14,9 +14,7 @@ class Results extends Component {
   };
 
   deleteAllResultsHandler = () => {
-    axios
-      .delete('/assets.json')
-      .then(x => {
+    axios.delete('/assets.json').then(x => {
       window.location.reload();
     });
   };
@@ -55,7 +53,12 @@ class Results extends Component {
         <div className={classes.ResultSum}>
           <ResultSum fetchedResults={this.state.results} />
         </div>
-        <button className={classes.DeleteAllButton} onClick={this.deleteAllResultsHandler}>Delete All</button>
+        <button
+          className={classes.DeleteAllButton}
+          onClick={this.deleteAllResultsHandler}
+        >
+          Delete All
+        </button>
       </Aux>
     );
     if (this.state.loading) {

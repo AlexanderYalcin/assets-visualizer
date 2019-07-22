@@ -14,7 +14,7 @@ class Form extends Component {
     this.inputElement.focus();
   }
 
-  dateCreator = () => {
+  getCurrentDate = () => {
     const currentDate = new Date();
     const dateTime =
       currentDate.getDate() +
@@ -31,7 +31,7 @@ class Form extends Component {
     this.setState({ loading: true });
     let result = {
       amount: event.target.amount.value,
-      date: this.dateCreator()
+      date: this.getCurrentDate()
     };
 
     let reg = new RegExp('(^[1-9][0-9]*$)');
