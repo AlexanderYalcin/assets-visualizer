@@ -4,15 +4,17 @@ import classes from './Form.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../UI/Spinner/Spinner';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+
+import CloseIcon from '@material-ui/icons/Close';
 
 class Form extends Component {
   state = {
-    loading: false
+    loading: false,
+    snackbarOpen: false,
+    snackbarMsg: ''
   };
-
-  componentDidMount() {
-    this.inputElement.focus();
-  }
 
   getCurrentDate = () => {
     const currentDate = new Date();
@@ -26,7 +28,11 @@ class Form extends Component {
     return dateTime;
   };
 
-  amountHandler = event => {
+  handleClose = () => {
+    this.setState({ snackbarOpen: false });
+  };
+
+  sumbitHandler = event => {
     event.preventDefault();
     this.setState({ loading: true });
     let result = {
@@ -39,7 +45,11 @@ class Form extends Component {
       axios
         .post('/assets.json', result)
         .then(response => {
-          this.setState({ loading: false });
+          this.setState({
+            snackbarOpen: true,
+            snackbarMsg: 'Successfully sent',
+            loading: false
+          });
         })
         .catch(error => this.setState({ loading: false }));
     } else {
@@ -50,20 +60,36 @@ class Form extends Component {
 
   render() {
     let form = (
-      <form onSubmit={this.amountHandler} className={classes.Form}>
-        <p>Enter your savings amount for this month</p>
-        <input
-          name="amount"
-          type="number"
-          min="1"
-          placeholder="123..."
-          className={classes.Input}
-          ref={inputEl => {
-            this.inputElement = inputEl;
-          }}
+      <Aux>
+        <form onSubmit={this.sumbitHandler} className={classes.Form}>
+          <p>Enter your savings amount for this month</p>
+          <input
+            name="amount"
+            type="number"
+            min="1"
+            placeholder="123..."
+            className={classes.Input}
+          />
+          <button className={classes.Button}>Send Amount</button>
+        </form>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={this.state.snackbarOpen}
+          autoHideDuration={1500}
+          onClose={this.handleClose}
+          message={<span id="message-id">{this.state.snackbarMsg}</span>}
+          action={[
+            <IconButton
+              key="close"
+              arial-label="close"
+              color='inherit'
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
+          ]}
         />
-        <button className={classes.Button}>Send Amount</button>
-      </form>
+      </Aux>
     );
 
     if (this.state.loading) {
