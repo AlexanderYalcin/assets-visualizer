@@ -1,20 +1,24 @@
 .Form {
   margin-top: 10px;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
+  flex-direction: column;
 }
 
 .Input {
-  width: 75%;
+  width: 100%;
   height: 33px;
   border-radius: 3px;
 }
 
-.Button {
-  width: 25%;
-}
-
-.AmountTextDiv  {
+.AmountTextDiv {
   margin-top: 30px;
   font-weight: 500;
+}
+
+.Button {
+  margin-top: 10px;
+  margin-left: 80%;
+  width: 20%;
+  min-width: 49px;
 }

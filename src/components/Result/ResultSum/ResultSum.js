@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DeleteAllResults from '../DeleteAllResults/DeleteAllResults';
-import Aux from '../../../hoc/Auxiliary/Auxiliary';
+import classes from './ResultSum.css';
 
 export default class ResultSum extends Component {
   render() {
@@ -10,13 +10,11 @@ export default class ResultSum extends Component {
     }
 
     return (
-      <div>
-        <Aux>
-          <p>
-            Total: <strong>{total}</strong> SEK
-          </p>
-          {total > 0 ? <DeleteAllResults /> : ''}
-        </Aux>
+      <div className={classes.Total} >
+        <p>
+          Total: <strong>{total}</strong> SEK
+        </p>
+        {total > 0 ? <DeleteAllResults /> : ''}
       </div>
     );
   }

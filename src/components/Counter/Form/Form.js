@@ -28,8 +28,10 @@ class Form extends Component {
   sumbitHandler = event => {
     event.preventDefault();
     this.setState({ loading: true });
+
     let result = {
       amount: event.target.amount.value,
+      note: event.target.note.value,
       date: this.getCurrentDate()
     };
 
@@ -70,18 +72,23 @@ class Form extends Component {
   render() {
     let form = (
       <div>
-        <div className={classes.AmountTextDiv} >
-          <span>Enter your savings amount for this month</span>
-        </div>
-        <form onSubmit={this.sumbitHandler} className={classes.Form}>
-          <input
-            name="amount"
-            type="number"
-            min="1"
-            placeholder="123..."
-            className={classes.Input}
-          />
-          <button className={classes.Button}>Send Amount</button>
+        <form onSubmit={this.sumbitHandler}>
+          <div className={classes.Form}>
+
+            <span>Amount:</span>
+            <input
+              name="amount"
+              type="number"
+              min="1"
+              placeholder="123..."
+              className={classes.Input}
+            />
+
+            <span>Note:</span>
+            <input name="note" type="text" className={classes.Input} />
+            
+          </div>
+          <button className={classes.Button}>Send</button>
         </form>
         <SnackBar
           variant={this.state.snackbarVariant}

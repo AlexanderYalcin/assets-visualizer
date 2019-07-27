@@ -7,16 +7,20 @@ const Result = props => {
   for (let resultName in props.results) {
     results.push({
       name: resultName,
+      note: props.results[resultName],
       amount: props.results[resultName]
     });
   }
 
   return (
     <div className={classes.Results}>
+      <p>{props.date}</p>
       <p>
         Amount: <strong>{Number.parseFloat(props.amount)} SEK</strong>
       </p>
-      <p>{props.date}</p>
+      {props.note ? <p>
+        Note: <strong>{props.note}</strong>
+      </p> : ''}
     </div>
   );
 };

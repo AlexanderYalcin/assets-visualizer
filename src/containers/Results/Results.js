@@ -39,6 +39,7 @@ class Results extends Component {
             <Result
               key={result.id}
               amount={result.amount}
+              note={result.note}
               date={result.date}
               fetchedResults={this.state.results}
             />
