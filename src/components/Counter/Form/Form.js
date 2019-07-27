@@ -25,8 +25,6 @@ class Form extends Component {
     return dateTime;
   };
 
-
-
   sumbitHandler = event => {
     event.preventDefault();
     this.setState({ loading: true });
@@ -50,7 +48,7 @@ class Form extends Component {
         .catch(error =>
           this.setState({
             snackbarOpen: true,
-            snackbarVariant: 'error',            
+            snackbarVariant: 'error',
             snackbarMsg: error.message,
             loading: false
           })
@@ -58,10 +56,10 @@ class Form extends Component {
     } else {
       this.setState({
         snackbarOpen: true,
-        snackbarVariant: 'warning', 
+        snackbarVariant: 'warning',
         snackbarMsg: 'Invalid input!',
         loading: false
-      })
+      });
     }
   };
 
@@ -72,8 +70,8 @@ class Form extends Component {
   render() {
     let form = (
       <Aux>
+        <p>Enter your savings amount for this month</p>
         <form onSubmit={this.sumbitHandler} className={classes.Form}>
-          <p>Enter your savings amount for this month</p>
           <input
             name="amount"
             type="number"
