@@ -70,7 +70,9 @@ class Form extends Component {
   render() {
     let form = (
       <Aux>
-        <p>Enter your savings amount for this month</p>
+        <div>
+          <p>Enter your savings amount for this month</p>
+        </div>
         <form onSubmit={this.sumbitHandler} className={classes.Form}>
           <input
             name="amount"
