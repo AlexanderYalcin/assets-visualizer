@@ -9,14 +9,8 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Results extends Component {
   state = {
-    results: [],
+    results: [], 
     loading: true
-  };
-
-  deleteAllResultsHandler = () => {
-    axios.delete('/assets.json').then(x => {
-      window.location.reload();
-    });
   };
 
   componentDidMount() {
@@ -38,32 +32,29 @@ class Results extends Component {
   }
 
   render() {
+    
     let results = (
       <Aux>
         <div onClick={this.deleteResultHandler} className={classes.Results}>
           {this.state.results.map(result => (
             <Result
-              key={result.id}
-              amount={result.amount}
-              date={result.date}
-              fetchedResults={this.state.results}
+            key={result.id}
+            amount={result.amount}
+            date={result.date}
+            fetchedResults={this.state.results}
             />
-          ))}
+            ))}
         </div>
         <div className={classes.ResultSum}>
           <ResultSum fetchedResults={this.state.results} />
         </div>
-        <button
-          className={classes.DeleteAllButton}
-          onClick={this.deleteAllResultsHandler}
-        >
-          Delete All
-        </button>
       </Aux>
     );
     if (this.state.loading) {
       results = <Spinner />;
     }
+
+    
     return <div>{results}</div>;
   }
 }

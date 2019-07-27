@@ -75,7 +75,7 @@ class Form extends Component {
         <Snackbar
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           open={this.state.snackbarOpen}
-          autoHideDuration={1500}
+          autoHideDuration={2500}
           onClose={this.handleClose}
           message={<span id="message-id">{this.state.snackbarMsg}</span>}
           action={[
