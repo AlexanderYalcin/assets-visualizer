@@ -74,19 +74,20 @@ class Form extends Component {
       <div>
         <form onSubmit={this.sumbitHandler}>
           <div className={classes.Form}>
-
-            <span>Amount:</span>
-            <input
-              name="amount"
-              type="number"
-              min="1"
-              placeholder="123..."
-              className={classes.Input}
-            />
-
-            <span>Note:</span>
-            <input name="note" type="text" className={classes.Input} />
-            
+            <div className={classes.FormInputDiv}>
+              <span>Amount:</span>
+              <input
+                name="amount"
+                type="number"
+                min="1"
+                placeholder="123..."
+                className={classes.Input}
+              />
+            </div>
+            <div className={classes.FormInputDiv}>
+              <span>Note:</span>
+              <input name="note" type="text" className={classes.Input} />
+            </div>
           </div>
           <button className={classes.Button}>Send</button>
         </form>

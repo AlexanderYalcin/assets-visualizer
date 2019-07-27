@@ -11,6 +11,10 @@
   border-radius: 3px;
 }
 
+.FormInputDiv {
+  padding-top: 10px;
+}
+
 .AmountTextDiv {
   margin-top: 30px;
   font-weight: 500;
@@ -22,3 +26,5 @@
   width: 20%;
   min-width: 49px;
 }
+
+
