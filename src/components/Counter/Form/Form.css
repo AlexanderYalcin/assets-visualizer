@@ -1,8 +1,7 @@
 .Form {
-  margin-top: 40px;
+  margin-top: 10px;
   font-weight: 600;
   display: flex;
-  
 }
 
 .Input {
@@ -13,4 +12,9 @@
 
 .Button {
   width: 25%;
+}
+
+.AmountTextDiv  {
+  margin-top: 30px;
+  font-weight: 500;
 }

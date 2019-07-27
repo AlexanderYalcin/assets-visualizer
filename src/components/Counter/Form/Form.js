@@ -69,9 +69,9 @@ class Form extends Component {
 
   render() {
     let form = (
-      <Aux>
-        <div>
-          <p>Enter your savings amount for this month</p>
+      <div>
+        <div className={classes.AmountTextDiv} >
+          <span>Enter your savings amount for this month</span>
         </div>
         <form onSubmit={this.sumbitHandler} className={classes.Form}>
           <input
@@ -89,7 +89,7 @@ class Form extends Component {
           open={this.state.snackbarOpen}
           onClose={this.snackbarCloseHandler}
         />
-      </Aux>
+      </div>
     );
 
     if (this.state.loading) {
