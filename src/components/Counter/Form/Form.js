@@ -3,7 +3,6 @@ import Aux from '../../../hoc/Auxiliary/Auxiliary';
 import classes from './Form.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../UI/Spinner/Spinner';
-import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -51,7 +50,13 @@ class Form extends Component {
             loading: false
           });
         })
-        .catch(error => this.setState({ loading: false }));
+        .catch(error =>
+          this.setState({
+            snackbarOpen: true,
+            snackbarMsg: error.message,
+            loading: false
+          })
+        );
     } else {
       alert('Bad input'); //Temporary
       this.setState({ loading: false });
@@ -82,7 +87,7 @@ class Form extends Component {
             <IconButton
               key="close"
               arial-label="close"
-              color='inherit'
+              color="inherit"
               onClick={this.handleClose}
             >
               <CloseIcon />
@@ -99,4 +104,4 @@ class Form extends Component {
   }
 }
 
-export default withErrorHandler(Form, axios);
+export default Form;

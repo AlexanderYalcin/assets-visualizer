@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Results extends Component {
   state = {
-    results: [], 
+    results: [],
     loading: true
   };
 
@@ -32,18 +32,17 @@ class Results extends Component {
   }
 
   render() {
-    
     let results = (
       <Aux>
         <div onClick={this.deleteResultHandler} className={classes.Results}>
           {this.state.results.map(result => (
             <Result
-            key={result.id}
-            amount={result.amount}
-            date={result.date}
-            fetchedResults={this.state.results}
+              key={result.id}
+              amount={result.amount}
+              date={result.date}
+              fetchedResults={this.state.results}
             />
-            ))}
+          ))}
         </div>
         <div className={classes.ResultSum}>
           <ResultSum fetchedResults={this.state.results} />
@@ -54,7 +53,6 @@ class Results extends Component {
       results = <Spinner />;
     }
 
-    
     return <div>{results}</div>;
   }
 }
