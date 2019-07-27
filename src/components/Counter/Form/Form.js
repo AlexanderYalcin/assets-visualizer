@@ -3,10 +3,7 @@ import Aux from '../../../hoc/Auxiliary/Auxiliary';
 import classes from './Form.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../UI/Spinner/Spinner';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-
-import CloseIcon from '@material-ui/icons/Close';
+import SnackBar from './SnackBar/SnackBar';
 
 class Form extends Component {
   state = {
@@ -27,9 +24,7 @@ class Form extends Component {
     return dateTime;
   };
 
-  handleClose = () => {
-    this.setState({ snackbarOpen: false });
-  };
+
 
   sumbitHandler = event => {
     event.preventDefault();
@@ -63,6 +58,10 @@ class Form extends Component {
     }
   };
 
+  handleClose = () => {
+    this.setState({ snackbarOpen: false });
+  };
+
   render() {
     let form = (
       <Aux>
@@ -77,22 +76,10 @@ class Form extends Component {
           />
           <button className={classes.Button}>Send Amount</button>
         </form>
-        <Snackbar
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        <SnackBar
+          snackbarMsg={this.state.snackbarMsg}
           open={this.state.snackbarOpen}
-          autoHideDuration={2500}
           onClose={this.handleClose}
-          message={<span id="message-id">{this.state.snackbarMsg}</span>}
-          action={[
-            <IconButton
-              key="close"
-              arial-label="close"
-              color="inherit"
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>
-          ]}
         />
       </Aux>
     );
