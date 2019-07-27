@@ -9,7 +9,8 @@ class Form extends Component {
   state = {
     loading: false,
     snackbarOpen: false,
-    snackbarMsg: ''
+    snackbarMsg: '',
+    snackbarVariant: 'success'
   };
 
   getCurrentDate = () => {
@@ -41,6 +42,7 @@ class Form extends Component {
         .then(response => {
           this.setState({
             snackbarOpen: true,
+            snackbarVariant: 'success',
             snackbarMsg: 'Successfully sent',
             loading: false
           });
@@ -48,17 +50,22 @@ class Form extends Component {
         .catch(error =>
           this.setState({
             snackbarOpen: true,
+            snackbarVariant: 'error',            
             snackbarMsg: error.message,
             loading: false
           })
         );
     } else {
-      alert('Bad input'); //Temporary
-      this.setState({ loading: false });
+      this.setState({
+        snackbarOpen: true,
+        snackbarVariant: 'warning', 
+        snackbarMsg: 'Invalid input!',
+        loading: false
+      })
     }
   };
 
-  handleClose = () => {
+  snackbarCloseHandler = () => {
     this.setState({ snackbarOpen: false });
   };
 
@@ -77,9 +84,10 @@ class Form extends Component {
           <button className={classes.Button}>Send Amount</button>
         </form>
         <SnackBar
-          snackbarMsg={this.state.snackbarMsg}
+          variant={this.state.snackbarVariant}
+          message={this.state.snackbarMsg}
           open={this.state.snackbarOpen}
-          onClose={this.handleClose}
+          onClose={this.snackbarCloseHandler}
         />
       </Aux>
     );
