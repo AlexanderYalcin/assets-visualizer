@@ -36,7 +36,7 @@ class CustomizedAxisTick extends PureComponent {
           dy={16}
           textAnchor="end"
           fill="#666"
-          fontSize={15}
+          fontSize={13}
           transform="rotate(-17)"
         >
           {payload.value}
@@ -60,7 +60,7 @@ export default class LabelLineChart extends PureComponent {
     return (
       <div className={classes.Chart}>
         {this.props.fetchedResults.length > 0 ? (
-          <ResponsiveContainer  height={300}>
+          <ResponsiveContainer height={300}>
             <LineChart
               data={results}
               margin={{

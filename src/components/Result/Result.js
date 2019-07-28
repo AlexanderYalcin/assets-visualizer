@@ -13,14 +13,16 @@ const Result = props => {
   }
 
   return (
-    <div className={classes.Results}>
-      <p>{props.date}</p>
-      <p>
-        Amount: <strong>{Number.parseFloat(props.amount)} SEK</strong>
-      </p>
-      {props.note ? <p>
-        Note: <strong>{props.note}</strong>
-      </p> : ''}
+    <div className={classes.ResultsOuter}>
+      <div className={classes.Results}>
+        <p>{props.date}</p>
+        <p>
+          Amount: <strong>{Number.parseFloat(props.amount)} SEK</strong>
+        </p>
+        {props.note ? <p>
+          Note: <strong>{props.note}</strong>
+        </p> : ''}
+      </div>
     </div>
   );
 };
