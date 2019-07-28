@@ -8,40 +8,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  ResponsiveContainer
 } from 'recharts';
-
-const data = [
-  {
-    name: 'Page A',
-    SEK: 2400
-  },
-  {
-    name: 'Page B',
-    SEK: 1398
-  },
-  {
-    name: 'Page C',
-    SEK: 9800
-  },
-  {
-    name: 'Page D',
-    SEK: 3908
-  },
-  {
-    name: 'Page E',
-    SEK: 4800
-  },
-  {
-    name: 'Page F',
-    SEK: 3800
-  },
-  {
-    name: 'Page G',
-    SEK: 4300
-  }
-];
-console.log(data);
 
 class CustomizedLabel extends PureComponent {
   render() {
@@ -67,7 +36,8 @@ class CustomizedAxisTick extends PureComponent {
           dy={16}
           textAnchor="end"
           fill="#666"
-          transform="rotate(-35)"
+          fontSize={15}
+          transform="rotate(-17)"
         >
           {payload.value}
         </text>
@@ -89,29 +59,33 @@ export default class LabelLineChart extends PureComponent {
 
     return (
       <div className={classes.Chart}>
-        <LineChart
-          width={500}
-          height={300}
-          data={results}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 10
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="SEK"
-            stroke="#8884d8"
-            label={<CustomizedLabel />}
-          />
-        </LineChart>
+        {this.props.fetchedResults.length > 0 ? (
+          <ResponsiveContainer  height={300}>
+            <LineChart
+              data={results}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 10
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="SEK"
+                stroke="#8884d8"
+                label={<CustomizedLabel />}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
