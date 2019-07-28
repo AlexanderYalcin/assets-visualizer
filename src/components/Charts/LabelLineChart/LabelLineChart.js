@@ -14,33 +14,34 @@ import {
 const data = [
   {
     name: 'Page A',
-    pv: 2400
+    SEK: 2400
   },
   {
     name: 'Page B',
-    pv: 1398
+    SEK: 1398
   },
   {
     name: 'Page C',
-    pv: 9800
+    SEK: 9800
   },
   {
     name: 'Page D',
-    pv: 3908
+    SEK: 3908
   },
   {
     name: 'Page E',
-    pv: 4800
+    SEK: 4800
   },
   {
     name: 'Page F',
-    pv: 3800
+    SEK: 3800
   },
   {
     name: 'Page G',
-    pv: 4300
+    SEK: 4300
   }
 ];
+console.log(data);
 
 class CustomizedLabel extends PureComponent {
   render() {
@@ -77,14 +78,21 @@ class CustomizedAxisTick extends PureComponent {
 
 export default class LabelLineChart extends PureComponent {
   render() {
-    console.log(this.props.fetchedResults);
-    
+    let results = [];
+
+    for (let result in this.props.fetchedResults) {
+      results.push({
+        name: this.props.fetchedResults[result].date,
+        SEK: Number.parseInt(this.props.fetchedResults[result].amount)
+      });
+    }
+
     return (
-      <div className={classes.Chart} >
+      <div className={classes.Chart}>
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={results}
           margin={{
             top: 20,
             right: 30,
@@ -99,11 +107,10 @@ export default class LabelLineChart extends PureComponent {
           <Legend />
           <Line
             type="monotone"
-            dataKey="pv"
+            dataKey="SEK"
             stroke="#8884d8"
             label={<CustomizedLabel />}
           />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
       </div>
     );

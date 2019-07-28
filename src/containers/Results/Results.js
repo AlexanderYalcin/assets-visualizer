@@ -35,7 +35,9 @@ class Results extends Component {
   render() {
     let results = (
       <Aux>
-        <LabelLineChart fetchedResults={this.state.results} />
+        <div>
+          <LabelLineChart fetchedResults={this.state.results} />
+        </div>
         <div onClick={this.deleteResultHandler} className={classes.Results}>
           {this.state.results.map(result => (
             <Result
