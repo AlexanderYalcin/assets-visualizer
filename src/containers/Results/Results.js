@@ -50,6 +50,7 @@ class Results extends Component {
         </div>
       </Aux>
     );
+    
     if (this.state.loading) {
       results = <Spinner />;
     }

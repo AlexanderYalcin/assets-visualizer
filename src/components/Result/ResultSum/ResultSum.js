@@ -10,10 +10,16 @@ export default class ResultSum extends Component {
     }
 
     return (
-      <div className={classes.Total} >
-        <p>
-          Total: <strong>{total}</strong> SEK
-        </p>
+      <div className={classes.Total}>
+        <div className={classes.TotalEmpty}>
+          {total > 0 ? (
+            <p>
+              Total: <strong>{total}</strong> SEK
+            </p>
+          ) : (
+            'Your results is empty!'
+          )}
+        </div>
         {total > 0 ? <DeleteAllResults /> : ''}
       </div>
     );
