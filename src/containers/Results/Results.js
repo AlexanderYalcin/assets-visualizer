@@ -6,6 +6,7 @@ import Result from '../../components/Result/Result';
 import ResultSum from '../../components/Result/ResultSum/ResultSum';
 import classes from './Results.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import LabelLineChart from '../../components/Charts/LabelLineChart/LabelLineChart';
 
 class Results extends Component {
   state = {
@@ -34,6 +35,7 @@ class Results extends Component {
   render() {
     let results = (
       <Aux>
+        <LabelLineChart fetchedResults={this.state.results} />
         <div onClick={this.deleteResultHandler} className={classes.Results}>
           {this.state.results.map(result => (
             <Result
@@ -50,7 +52,7 @@ class Results extends Component {
         </div>
       </Aux>
     );
-    
+
     if (this.state.loading) {
       results = <Spinner />;
     }
