@@ -21,7 +21,7 @@ const SideDrawer = props => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems />
+          <NavigationItems clicked={props.closed}/>
         </nav>
       </div>
     </Aux>
