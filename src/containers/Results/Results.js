@@ -37,7 +37,7 @@ class Results extends Component {
       <Aux>
         <LabelLineChart fetchedResults={this.state.results} />
         <div className={classes.Results}>
-          {this.state.results.reverse().map(result => (
+          {this.state.results.map(result => (
             <Result
               key={result.id}
               amount={result.amount}
