@@ -36,8 +36,8 @@ class Results extends Component {
     let results = (
       <Aux>
         <LabelLineChart fetchedResults={this.state.results} />
-        <div onClick={this.deleteResultHandler} className={classes.Results}>
-          {this.state.results.map(result => (
+        <div className={classes.Results}>
+          {this.state.results.reverse().map(result => (
             <Result
               key={result.id}
               amount={result.amount}

@@ -17,7 +17,7 @@ export default class ResultSum extends Component {
               Total: <strong>{total}</strong> SEK
             </p>
           ) : (
-            'Your results is empty!'
+            <small>Your results is empty!</small>
           )}
         </div>
         {total > 0 ? <DeleteAllResults /> : ''}
