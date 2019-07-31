@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import classes from './Result.css';
-import axios from '../../axios-orders';
+import DeleteSingleResult from './DeleteSingleResult/DeleteSingleResult';
 
 class Result extends Component {
-  deleteSingleResult = () => {
-    if (window.confirm('Are you sure you want to delete this result?') === false) {
-      return;
-    }
-    axios.delete(`/assets/${this.props.id}.json`).then(() => {
-      window.location.reload();
-    });
-  };
-
   render() {
     const results = [];
 
@@ -24,19 +15,23 @@ class Result extends Component {
     }
 
     return (
-      <div onClick={this.deleteSingleResult} className={classes.ResultsOuter}>
+      <div className={classes.ResultsOuter}>
         <div className={classes.Results}>
-          <p>{this.props.date}</p>
-          <p>
-            Amount: <strong>{Number.parseFloat(this.props.amount)} SEK</strong>
-          </p>
-          {this.props.note ? (
+          <div>
+            <p>{this.props.date}</p>
             <p>
-              Note: <strong>{this.props.note}</strong>
+              Amount:{' '}
+              <strong>{Number.parseFloat(this.props.amount)} SEK</strong>
             </p>
-          ) : (
-            ''
-          )}
+            {this.props.note ? (
+              <p>
+                Note: <strong>{this.props.note}</strong>
+              </p>
+            ) : (
+              ''
+            )}
+          </div>
+          <DeleteSingleResult resultId={this.props.id} />
         </div>
       </div>
     );

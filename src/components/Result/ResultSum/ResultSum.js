@@ -15,7 +15,10 @@ export default class ResultSum extends Component {
         <div className={classes.TotalEmpty}>
           {total > 0 ? (
             <div>
-              <span className={classes.Average}>Amount Average: <strong>{total/this.props.fetchedResults.length}</strong> SEK</span>
+              <span className={classes.Average}>
+                Amount Average:{' '}
+                <strong>{(total / this.props.fetchedResults.length).toFixed(0)}</strong> SEK
+              </span>
               <p>
                 Total: <strong>{total}</strong> SEK
               </p>
