@@ -1,30 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Result.css';
+import axios from '../../axios-orders';
 
-const Result = props => {
-  const results = [];
-
-  for (let resultName in props.results) {
-    results.push({
-      name: resultName,
-      note: props.results[resultName],
-      amount: props.results[resultName]
+class Result extends Component {
+  deleteSingleResult = () => {
+    if (window.confirm('Are you sure you want to delete this result?') === false) {
+      return;
+    }
+    axios.delete(`/assets/${this.props.id}.json`).then(() => {
+      window.location.reload();
     });
-  }
+  };
 
-  return (
-    <div className={classes.ResultsOuter}>
-      <div className={classes.Results}>
-        <p>{props.date}</p>
-        <p>
-          Amount: <strong>{Number.parseFloat(props.amount)} SEK</strong>
-        </p>
-        {props.note ? <p>
-          Note: <strong>{props.note}</strong>
-        </p> : ''}
+  render() {
+    const results = [];
+
+    for (let resultName in this.props.results) {
+      results.push({
+        name: resultName,
+        note: this.props.results[resultName],
+        amount: this.props.results[resultName]
+      });
+    }
+
+    return (
+      <div onClick={this.deleteSingleResult} className={classes.ResultsOuter}>
+        <div className={classes.Results}>
+          <p>{this.props.date}</p>
+          <p>
+            Amount: <strong>{Number.parseFloat(this.props.amount)} SEK</strong>
+          </p>
+          {this.props.note ? (
+            <p>
+              Note: <strong>{this.props.note}</strong>
+            </p>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Result;

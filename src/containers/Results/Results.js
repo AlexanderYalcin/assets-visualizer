@@ -19,10 +19,10 @@ class Results extends Component {
       .get('/assets.json')
       .then(res => {
         const fetchedResults = [];
-        for (let key in res.data) {
+        for (let id in res.data) {
           fetchedResults.push({
-            ...res.data[key],
-            id: key
+            ...res.data[id],
+            id: id
           });
         }
         this.setState({ loading: false, results: fetchedResults });
@@ -40,6 +40,7 @@ class Results extends Component {
           {this.state.results.map(result => (
             <Result
               key={result.id}
+              id={result.id}
               amount={result.amount}
               note={result.note}
               date={result.date}
