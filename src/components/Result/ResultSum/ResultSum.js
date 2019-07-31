@@ -5,6 +5,7 @@ import classes from './ResultSum.css';
 export default class ResultSum extends Component {
   render() {
     let total = 0;
+
     for (let i = 0; i < this.props.fetchedResults.length; i++) {
       total += parseInt(this.props.fetchedResults[i].amount);
     }
@@ -13,9 +14,12 @@ export default class ResultSum extends Component {
       <div className={classes.Total}>
         <div className={classes.TotalEmpty}>
           {total > 0 ? (
-            <p>
-              Total: <strong>{total}</strong> SEK
-            </p>
+            <div>
+              <span className={classes.Average}>Amount Average: <strong>{total/this.props.fetchedResults.length}</strong> SEK</span>
+              <p>
+                Total: <strong>{total}</strong> SEK
+              </p>
+            </div>
           ) : (
             <small>Your results is empty!</small>
           )}
